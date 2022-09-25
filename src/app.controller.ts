@@ -1,12 +1,14 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Controller, Post } from '@nestjs/common';
+import { UserCreateDto } from './dto/user-create.dto';
+import { UserModel } from './models/user.model';
+import { UserRepository } from './repositories/user.repository';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly userRepository: UserRepository) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Post('/register')
+  async register(user: UserCreateDto): Promise<UserModel> {
+    return await this.userRepository.create(user);
   }
 }
