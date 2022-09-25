@@ -1,7 +1,9 @@
+import { Injectable } from '@nestjs/common';
 import { UserCreateDto } from '../dto/user-create.dto';
 import { smallRandomDelay } from '../helper';
 import { UserModel } from '../models/user.model';
 
+@Injectable()
 export class UserRepository {
   private users: UserModel[] = [
     {
@@ -24,16 +26,23 @@ export class UserRepository {
     },
   ];
 
+  public async findByEmail(email: string): Promise<UserModel | undefined> {
+    await smallRandomDelay();
+
+    return this.users.find((it) => it.email === email);
+  }
+
   public async create(user: UserCreateDto): Promise<UserModel> {
     // TODO check if exists already
 
     const id = this.users.length + 1;
-    this.users.push({
+    const created = {
       id,
       name: user.name,
       email: user.email,
       shop_id: user.shop_id,
-    });
+    };
+    this.users.push(created);
 
     await smallRandomDelay();
 
