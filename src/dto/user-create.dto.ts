@@ -1,24 +1,14 @@
-import {
-  IsEmail,
-  IsNotEmpty,
-  IsNumber,
-  IsString,
-  MinLength,
-} from 'class-validator';
+import { IsEmail, IsString, MinLength } from 'class-validator';
 import { EmailNotRegistered } from '../validation-rules/email-not-registered.rule';
 
 export class UserCreateDto {
-  @IsNotEmpty()
   @IsString()
+  @MinLength(3)
   name: string;
 
   @IsEmail()
-  @EmailNotRegistered({ message: 'Email already registered' })
+  @EmailNotRegistered({ message: 'email already registered' })
   email: string;
-
-  @IsNumber()
-  // @ShopIdExists()
-  shop_id: number;
 
   @IsString()
   @MinLength(8)

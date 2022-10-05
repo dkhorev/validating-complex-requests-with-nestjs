@@ -10,19 +10,16 @@ export class UserRepository {
       id: 1,
       name: 'John Doe',
       email: 'john.doe@example.com',
-      shop_id: 1,
     },
     {
       id: 2,
       name: 'Jane Doe',
       email: 'jane.doe@example.com',
-      shop_id: 1,
     },
     {
       id: 3,
       name: 'Bob Doe',
       email: 'bob.doe@example.com',
-      shop_id: 1,
     },
   ];
 
@@ -40,7 +37,6 @@ export class UserRepository {
       id,
       name: user.name,
       email: user.email,
-      shop_id: user.shop_id,
     };
     this.users.push(created);
 
