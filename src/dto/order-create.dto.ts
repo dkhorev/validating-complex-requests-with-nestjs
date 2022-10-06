@@ -1,6 +1,21 @@
 import { Type } from 'class-transformer';
-import { IsDate, IsUUID, Validate } from 'class-validator';
+import {
+  IsDate,
+  IsDefined,
+  IsEmail,
+  IsNotEmptyObject,
+  IsUUID,
+  Validate,
+  ValidateNested,
+} from 'class-validator';
+import { CustomerExists } from '../validation-rules/customer-exists.rule';
 import { ShopIdExistsRule } from '../validation-rules/shop-id-exists.rule';
+
+class OrderCustomerDto {
+  @IsEmail()
+  @CustomerExists({ message: 'email not found' })
+  email: string;
+}
 
 export class OrderCreateDto {
   @IsUUID()
@@ -11,6 +26,10 @@ export class OrderCreateDto {
   @IsDate()
   created_at: Date;
 
+  @IsNotEmptyObject()
+  @IsDefined()
+  @Type(() => OrderCustomerDto)
+  @ValidateNested()
   customer: OrderCustomerDto;
 
   products: OrderProductDto[];
@@ -20,13 +39,10 @@ export class OrderCreateDto {
   contacts: OrderContactDto[];
 }
 
-class OrderCustomerDto {
-  id: number;
-}
-
 class OrderProductDto {
   id: number;
   name: string;
+  //@IsInt()
   quantity: number;
 }
 

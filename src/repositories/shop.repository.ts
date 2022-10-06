@@ -16,10 +16,6 @@ export class ShopRepository {
     },
   ];
 
-  constructor() {
-    console.log(new Date());
-  }
-
   public async findById(id: string): Promise<ShopModel | undefined> {
     await smallRandomDelay();
 
