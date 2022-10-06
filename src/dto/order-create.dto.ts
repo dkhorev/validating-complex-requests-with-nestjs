@@ -1,9 +1,22 @@
+import { Type } from 'class-transformer';
+import { IsDate, IsUUID, Validate } from 'class-validator';
+import { ShopIdExistsRule } from '../validation-rules/shop-id-exists.rule';
+
 export class OrderCreateDto {
-  shop_id: string; // uuid
+  @IsUUID()
+  @Validate(ShopIdExistsRule)
+  shop_id: string;
+
+  @Type(() => Date)
+  @IsDate()
   created_at: Date;
+
   customer: OrderCustomerDto;
+
   products: OrderProductDto[];
+
   shipment: OrderShimpentDto;
+
   contacts: OrderContactDto[];
 }
 
