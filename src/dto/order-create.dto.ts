@@ -1,20 +1,34 @@
 import { Type } from 'class-transformer';
 import {
+  ArrayNotEmpty,
   IsDate,
   IsDefined,
   IsEmail,
+  IsInt,
   IsNotEmptyObject,
   IsUUID,
   Validate,
   ValidateNested,
 } from 'class-validator';
 import { CustomerExists } from '../validation-rules/customer-exists.rule';
+import { ProductIdExists } from '../validation-rules/product-id-exists.rule';
+import { ProductIsAvailable } from '../validation-rules/product-is-available.rule';
 import { ShopIdExistsRule } from '../validation-rules/shop-id-exists.rule';
 
 class OrderCustomerDto {
   @IsEmail()
   @CustomerExists({ message: 'email not found' })
   email: string;
+}
+
+class OrderProductDto {
+  @IsInt()
+  @Validate(ProductIdExists)
+  id: number;
+
+  @IsInt()
+  @Validate(ProductIsAvailable)
+  quantity: number;
 }
 
 export class OrderCreateDto {
@@ -32,18 +46,15 @@ export class OrderCreateDto {
   @ValidateNested()
   customer: OrderCustomerDto;
 
+  @ArrayNotEmpty()
+  @IsDefined()
+  @Type(() => OrderProductDto)
+  @ValidateNested({ each: true })
   products: OrderProductDto[];
 
   shipment: OrderShimpentDto;
 
   contacts: OrderContactDto[];
-}
-
-class OrderProductDto {
-  id: number;
-  name: string;
-  //@IsInt()
-  quantity: number;
 }
 
 class OrderShimpentDto {

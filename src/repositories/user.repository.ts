@@ -5,7 +5,7 @@ import { UserModel } from '../models/user.model';
 
 @Injectable()
 export class UserRepository {
-  private users: UserModel[] = [
+  private items: UserModel[] = [
     {
       id: 1,
       name: 'John Doe',
@@ -26,19 +26,19 @@ export class UserRepository {
   public async findByEmail(email: string): Promise<UserModel | undefined> {
     await smallRandomDelay();
 
-    return this.users.find((it) => it.email === email);
+    return this.items.find((it) => it.email === email);
   }
 
   public async create(user: UserCreateDto): Promise<UserModel> {
     // TODO check if exists already
 
-    const id = this.users.length + 1;
+    const id = this.items.length + 1;
     const created = {
       id,
       name: user.name,
       email: user.email,
     };
-    this.users.push(created);
+    this.items.push(created);
 
     await smallRandomDelay();
 
@@ -46,6 +46,6 @@ export class UserRepository {
   }
 
   private findUserById(id: number): UserModel {
-    return this.users.find((it) => it.id === id);
+    return this.items.find((it) => it.id === id);
   }
 }
