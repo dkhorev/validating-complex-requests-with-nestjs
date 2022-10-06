@@ -1,3 +1,3 @@
 export class ShopModel {
-  id: number;
+  id: string;
 }
