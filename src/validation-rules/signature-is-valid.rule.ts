@@ -22,8 +22,6 @@ export class SignatureIsValidRule implements ValidatorConstraintInterface {
       .update(data.order_id + data.amount + this.secret)
       .digest('hex');
 
-    console.log(hash);
-
     return hash === signature;
   }
 
