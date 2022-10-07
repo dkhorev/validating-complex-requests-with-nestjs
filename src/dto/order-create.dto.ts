@@ -1,11 +1,15 @@
 import { Type } from 'class-transformer';
+import { TypeHelpOptions } from 'class-transformer/types/interfaces';
 import {
   ArrayNotEmpty,
+  Equals,
   IsDate,
   IsDefined,
   IsEmail,
   IsInt,
+  IsNotEmpty,
   IsNotEmptyObject,
+  IsString,
   IsUUID,
   Validate,
   ValidateNested,
@@ -31,6 +35,32 @@ class OrderProductDto {
   quantity: number;
 }
 
+enum DeliveryTypes {
+  DELIVERY = 'Delivery',
+  PICKUP = 'Pickup',
+}
+
+class DeliveryShipmentDto {
+  @Equals(DeliveryTypes.DELIVERY)
+  type: DeliveryTypes.DELIVERY;
+
+  @IsString()
+  @IsNotEmpty()
+  city: string;
+
+  @IsString()
+  @IsNotEmpty()
+  address: string;
+}
+
+class PickupShipmentDto {
+  @Equals(DeliveryTypes.PICKUP)
+  type: DeliveryTypes.PICKUP;
+
+  @IsInt()
+  point_id?: number;
+}
+
 export class OrderCreateDto {
   @IsUUID()
   @Validate(ShopIdExistsRule)
@@ -52,18 +82,20 @@ export class OrderCreateDto {
   @ValidateNested({ each: true })
   products: OrderProductDto[];
 
-  shipment: OrderShimpentDto;
+  @IsNotEmptyObject()
+  @IsDefined()
+  @Type((data: TypeHelpOptions) => {
+    switch (data.object.shipment.type) {
+      case DeliveryTypes.DELIVERY:
+        return DeliveryShipmentDto;
+      case DeliveryTypes.PICKUP:
+        return PickupShipmentDto;
+    }
+  })
+  @ValidateNested()
+  shipment: DeliveryShipmentDto | PickupShipmentDto;
 
   contacts: OrderContactDto[];
-}
-
-class OrderShimpentDto {
-  type: 'Delivery' | 'Pickup';
-  // if Delivery
-  city?: string;
-  address?: string;
-  // if Pickup
-  point_id?: number;
 }
 
 class OrderContactDto {
