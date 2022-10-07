@@ -7,8 +7,10 @@ import {
   IsDefined,
   IsEmail,
   IsInt,
+  IsMobilePhone,
   IsNotEmpty,
   IsNotEmptyObject,
+  IsOptional,
   IsString,
   IsUUID,
   Validate,
@@ -61,6 +63,20 @@ class PickupShipmentDto {
   point_id?: number;
 }
 
+class OrderContactDto {
+  @IsString()
+  @IsDefined()
+  @IsNotEmpty()
+  name: string;
+
+  @IsMobilePhone('en-US')
+  phone: string;
+
+  @IsOptional()
+  @IsEmail()
+  email?: string;
+}
+
 export class OrderCreateDto {
   @IsUUID()
   @Validate(ShopIdExistsRule)
@@ -95,11 +111,7 @@ export class OrderCreateDto {
   @ValidateNested()
   shipment: DeliveryShipmentDto | PickupShipmentDto;
 
+  @Type(() => OrderContactDto)
+  @ValidateNested({ each: true })
   contacts: OrderContactDto[];
-}
-
-class OrderContactDto {
-  name: string;
-  phone: string;
-  email?: string;
 }
