@@ -1,4 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
+import { PaymentConfirmationDto } from './dto/extra/payment-confirmation.dto';
 import { OrderCreateDto } from './dto/order-create.dto';
 import { UserCreateDto } from './dto/user-create.dto';
 import { UserModel } from './models/user.model';
@@ -16,5 +17,12 @@ export class AppController {
   @Post('/order')
   async order(@Body() order: OrderCreateDto): Promise<OrderCreateDto> {
     return order;
+  }
+
+  @Post('/payment-confirmation')
+  async paymentConfirmation(
+    @Body() data: PaymentConfirmationDto,
+  ): Promise<PaymentConfirmationDto> {
+    return data;
   }
 }
