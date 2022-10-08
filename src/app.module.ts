@@ -7,6 +7,7 @@ import { ShopRepository } from './repositories/shop.repository';
 import { UserRepository } from './repositories/user.repository';
 import { IsCustomerExists } from './validation-rules/customer-exists.rule';
 import { IsEmailNotRegistered } from './validation-rules/email-not-registered.rule';
+import { NoDiplicateUsersRule } from './validation-rules/no-diplicate-users.rule';
 import { ProductIdExists } from './validation-rules/product-id-exists.rule';
 import { ProductIsAvailable } from './validation-rules/product-is-available.rule';
 import { ShopIdExistsRule } from './validation-rules/shop-id-exists.rule';
@@ -26,6 +27,7 @@ import { SignatureIsValidRule } from './validation-rules/signature-is-valid.rule
     ProductIdExists,
     ProductIsAvailable,
     SignatureIsValidRule,
+    NoDiplicateUsersRule,
   ],
 })
 export class AppModule {}

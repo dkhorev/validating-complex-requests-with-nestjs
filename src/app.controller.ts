@@ -1,4 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
+import { InsertUsersDto } from './dto/extra/insert-users.dto';
 import { PaymentConfirmationDto } from './dto/extra/payment-confirmation.dto';
 import { SubscribeDto } from './dto/extra/subscribe.dto';
 import { OrderCreateDto } from './dto/order-create.dto';
@@ -29,6 +30,11 @@ export class AppController {
 
   @Post('/subscribe')
   async sunscribe(@Body() data: SubscribeDto): Promise<SubscribeDto> {
+    return data;
+  }
+
+  @Post('/insert-users')
+  async insertUsers(@Body() data: InsertUsersDto): Promise<InsertUsersDto> {
     return data;
   }
 }
