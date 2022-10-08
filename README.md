@@ -12,4 +12,4 @@ See the full article here: [https://medium.com/@dkhorev/validating-complex-reque
 
 ## Postamn collection
 
-To check out requests with Postman please import collection provided with this repo: [./postman-collection.json](./postman-collection.json)
+To check out requests with Postman please import collection provided with this repo: [postman_collection.json](postman_collection.json)
