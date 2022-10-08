@@ -1,0 +1,325 @@
+{
+	"info": {
+		"_postman_id": "41d6af07-6d49-4a23-bd88-5aa97b57685a",
+		"name": "Dmitry Khorev @ Medium",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5926556"
+	},
+	"item": [
+		{
+			"name": "Validating NestJS",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Bill Doe\",\n    \"email\": \"bill4.doe@example.com\",\n    \"password\": \"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bonus | Payment Confirm",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"order_id\": 100,\n    \"amount\": 19955,\n    \"signature\": \"3378487fb4496273f629256a3969b23d90169911da541cc3999da4b3615adbf7\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/payment-confirmation",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"payment-confirmation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bonus | Subscribe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"subscribe\": true,\n    \"email\": \"bob.doe@example.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/subscribe",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"subscribe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bonus | Insert Users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"users\": [\n        {\n            \"user_id\": 1,\n            \"email\": \"bob.doe@example.com\"\n        },\n        {\n            \"user_id\": 1,\n            \"email\": \"bob123.doe@example.com\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/insert-users",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"insert-users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bonus | Date Filter",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"start\": \"2022-10-01 10:00:00\",\n    \"end\": \"2022-10-01 12:00:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/date-filter",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"date-filter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"shop_id\": \"2e5679af-6c78-4a76-a42f-06c1ef5cabf9\",\n    \"created_at\": \"2022-10-06T04:54:25.008Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/order",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order+Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"shop_id\": \"2e5679af-6c78-4a76-a42f-06c1ef5cabf9\",\n    \"created_at\": \"2022-10-06T04:54:25.008Z\",\n    \"customer\": {\n        \"email\": \"john.doe@example.com\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/order",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order+Customer+Products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"shop_id\": \"2e5679af-6c78-4a76-a42f-06c1ef5cabf9\",\n    \"created_at\": \"2022-10-06T04:54:25.008Z\",\n    \"customer\": {\n        \"email\": \"john.doe@example.com\"\n    },\n    \"products\": [\n        {\n            \"id\": 100,\n            \"quantity\": 10\n        },\n        {\n            \"id\": 200,\n            \"quantity\": 5\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/order",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order+Customer+Products+Shipment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"shop_id\": \"2e5679af-6c78-4a76-a42f-06c1ef5cabf9\",\n    \"created_at\": \"2022-10-06T04:54:25.008Z\",\n    \"customer\": {\n        \"email\": \"john.doe@example.com\"\n    },\n    \"products\": [\n        {\n            \"id\": 100,\n            \"quantity\": 10\n        },\n        {\n            \"id\": 200,\n            \"quantity\": 5\n        }\n    ],\n    \"shipment\": {\n        \"type\": \"Delivery\",\n        \"point_id\": 199,\n        \"city\": \"NY\",\n        \"address\": \"Some street\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/order",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order+Customer+Products+Shipment+Contact",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"shop_id\": \"2e5679af-6c78-4a76-a42f-06c1ef5cabf9\",\n    \"created_at\": \"2022-10-06T04:54:25.008Z\",\n    \"customer\": {\n        \"email\": \"bob.doe@example.com\"\n    },\n    \"products\": [\n        {\n            \"id\": 100,\n            \"quantity\": 10\n        },\n        {\n            \"id\": 200,\n            \"quantity\": 5\n        }\n    ],\n    \"shipment\": {\n        \"type\": \"Delivery\",\n        \"point_id\": 199,\n        \"city\": \"NY\",\n        \"address\": \"Some street\"\n    },\n    \"contacts\": [\n        {\n            \"name\": \"Bob\",\n            \"phone\": \"1-800-375-5283\",\n            \"email\": \"bob.doe@example.com\"\n        },\n        {\n            \"name\": \"Jane\",\n            \"phone\": \"1-800-375-5283\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3000/order",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3000",
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
