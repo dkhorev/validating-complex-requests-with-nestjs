@@ -1,4 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
+import { DateFilterDto } from './dto/extra/date-filter.dto';
 import { InsertUsersDto } from './dto/extra/insert-users.dto';
 import { PaymentConfirmationDto } from './dto/extra/payment-confirmation.dto';
 import { SubscribeDto } from './dto/extra/subscribe.dto';
@@ -35,6 +36,11 @@ export class AppController {
 
   @Post('/insert-users')
   async insertUsers(@Body() data: InsertUsersDto): Promise<InsertUsersDto> {
+    return data;
+  }
+
+  @Post('/date-filter')
+  async dateFilter(@Body() data: DateFilterDto): Promise<DateFilterDto> {
     return data;
   }
 }
