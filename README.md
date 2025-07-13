@@ -10,6 +10,6 @@ See the full article here: [https://medium.com/@dkhorev/validating-complex-reque
 
 `npm run start:dev`
 
-## Postamn collection
+## Postman collection
 
 To check out requests with Postman please import collection provided with this repo: [postman_collection.json](postman_collection.json)
